@@ -29,7 +29,7 @@ func (this *factory) Client(name ...string) *alipay.Client {
 		return nil
 	}
 
-	var app, err = alipay.New(config.AppId, config.PrivateKey, config.IsProduction)
+	var app, err = alipay.New(config.AppId, config.PrivateKey, config.IsProduction, config.OptionFunctions...)
 	if err != nil {
 		logs.WithError(err).Error("alipay.factory.Client: create alipay app failed")
 		panic(err)
