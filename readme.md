@@ -9,6 +9,33 @@ $ go get github.com/qbhy/goal-alipay
 ## 配置 - configuration
 ```go
 // config/alipay.go
+package config
+
+import (
+	"github.com/goal-web/contracts"
+	alipay "github.com/qbhy/goal-alipay"
+)
+
+func init() {
+	configs["alipay"] = func(env contracts.Env) interface{} {
+		return &alipay.Config{
+			Default: env.StringOption("alipay.default", "default"),
+			Apps: map[string]*alipay.AppConfig{
+				"default": {
+					AppId:        env.GetString("alipay.appid"),
+					PrivateKey:   env.GetString("alipay.private_key"),
+					IsProduction: !env.GetBool("alipay.debug"),
+					//OptionFunctions: []alipay.OptionFunc{
+					//	func(c *alipay2.Client) {
+					//		// do something
+					//	},
+					//},
+				},
+			},
+		}
+	}
+}
+
 ```
 
 ## 使用 - usage

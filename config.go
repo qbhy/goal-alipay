@@ -6,8 +6,10 @@ type AppConfig struct {
 	AppId           string
 	PrivateKey      string
 	IsProduction    bool
-	OptionFunctions []alipay.OptionFunc
+	OptionFunctions []OptionFun
 }
+
+type OptionFun = alipay.OptionFunc
 
 type Config struct {
 	Default string
