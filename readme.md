@@ -1,4 +1,4 @@
-# goal-wechat
+# goal-aliyun
 这是一个 goal 的支付宝 sdk，基于 [smartwalle/alipay](https://github.com/smartwalle/alipay) 封装，支持多应用
 
 ## 安装 - install
