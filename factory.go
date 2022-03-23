@@ -35,6 +35,36 @@ func (this *factory) Client(name ...string) *alipay.Client {
 		panic(err)
 	}
 
+	if config.AppPublicCert != "" {
+		if loadCertErr := app.LoadAppPublicCert(config.AppPublicCert); loadCertErr != nil {
+			panic(loadCertErr)
+		}
+	} else if config.AppPublicCertFile != "" {
+		if loadCertErr := app.LoadAppPublicCertFromFile(config.AppPublicCertFile); loadCertErr != nil {
+			panic(loadCertErr)
+		}
+	}
+
+	if config.AliRootCert != "" {
+		if loadCertErr := app.LoadAliPayRootCert(config.AliRootCert); loadCertErr != nil {
+			panic(loadCertErr)
+		}
+	} else if config.AliRootCertFile != "" {
+		if loadCertErr := app.LoadAliPayRootCertFromFile(config.AliRootCertFile); loadCertErr != nil {
+			panic(loadCertErr)
+		}
+	}
+
+	if config.AliPublicCert != "" {
+		if loadCertErr := app.LoadAliPayPublicCert(config.AliPublicCert); loadCertErr != nil {
+			panic(loadCertErr)
+		}
+	} else if config.AliPublicCertFile != "" {
+		if loadCertErr := app.LoadAliPayPublicCertFromFile(config.AliPublicCertFile); loadCertErr != nil {
+			panic(loadCertErr)
+		}
+	}
+
 	this.clients.Store(key, app)
 
 	return app
